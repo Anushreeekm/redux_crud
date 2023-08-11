@@ -23,9 +23,13 @@ export const retriveSingle = createAsyncThunk("contact/retrive/single", async ({
 // update action
 export const updateContact = createAsyncThunk("contact/update", async ({id,contact}) => {
     console.log(`id =`, id, "and data =", contact)
+    const res = await ContactApi.update(id,contact)
+    return res.data
 })
 
 // delete action
 export const deleteContact = createAsyncThunk("contact/delete", async ({id}) => {
     console.log(`delete id =`, id)
+    await ContactApi.delete(id)
+    return { id } 
 })
